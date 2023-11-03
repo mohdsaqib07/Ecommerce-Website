@@ -245,12 +245,12 @@ export default function App({ Component, pageProps }) {
 
   }
   return <>
-<Head>
+   <CodeState>
+    <Head>
         <title>Codeswear.com</title>
         <link rel="shortcut icon" href="/Myntra_logo.png" type="image/x-icon" />
         </Head>
-    <CodeState>
-      <Navbar cart={cart} addToCart={addToCart} decrementItemQty={decrementItemQty} incrementItemQty={incrementItemQty} removeItem={removeItem} clearCart={clearCart} subTotal={subTotal} myRef={myRef} toggleSideCart={toggleSideCart} notify={notify} />
+      {router.asPath!=='/admin' && router.asPath!=='/admin/add' && router.asPath!=='/admin/allproducts' && router.asPath!=='/admin/orders' && router.asPath!=='/admin/imageuploader' && router.pathname!=='/admin/modify' && <Navbar cart={cart} addToCart={addToCart} decrementItemQty={decrementItemQty} incrementItemQty={incrementItemQty} removeItem={removeItem} clearCart={clearCart} subTotal={subTotal} myRef={myRef} toggleSideCart={toggleSideCart} notify={notify} />}
       <ToastContainer />
       <div>
       <LoadingBar
@@ -265,7 +265,7 @@ export default function App({ Component, pageProps }) {
       />
        </div>
       <Component cart={cart} addToCart={addToCart} decrementItemQty={decrementItemQty} incrementItemQty={incrementItemQty} removeItem={removeItem} clearCart={clearCart} subTotal={subTotal} myRef={myRef} toggleSideCart={toggleSideCart} instantBuy={instantBuy} notify={notify} progress={progress} setProgress={setProgress} {...pageProps} />
-      <Footer />
+      {router.asPath!=='/admin' && router.asPath!=='/admin/allproducts' && router.asPath!=='/admin/add' && router.asPath!=='/admin/orders' && router.asPath!=='/admin/imageuploader' && <Footer />}
     </CodeState>
   </>
 

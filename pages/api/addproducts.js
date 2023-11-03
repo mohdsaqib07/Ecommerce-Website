@@ -5,16 +5,19 @@ export default async function handler(req,res){
     if(req.method === "POST"){
         try{
             await connectDB();
-            await Product.insertMany(req.body.products);
+            const product = new Product(req.body);
+            await product.save();
+
             res.status(200).json({success:true})
-            disconnectDB();
+            
 
         }
         catch(err){
+            console.log(err.message)
             res.status(500).json({error:err});
         }
     }
     else{
-        res.status(500).end();
+        res.status(405).end();
     }
 }

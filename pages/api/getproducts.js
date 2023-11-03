@@ -21,7 +21,14 @@ export default async function handler(req, res) {
     const {category} = req.query;
     await connectDB();
     // const products = Product.find({category:category})
-    let products = await fetchData(category);
+    let products;
+    if(req.query.category){
+      products = await fetchData(category);
+    }
+    else{
+      products = await Product.find({});
+    }
+    
 
     res.status(200).json({success:true,products:products});
     //  await disconnectDB();
